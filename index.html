@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Prompt 提示词编辑器 - 一款轻量级的提示词编写和管理工具">
+  <title>Prompt 提示词编辑器</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <a href="/" class="logo">
+          <span class="logo-icon">✏️</span>
+          <span>Prompt 提示词编辑器</span>
+        </a>
+      </div>
+      <div class="header-right">
+        <select id="template-select" class="btn-secondary" style="height: 40px; padding: 0 16px;">
+          <option value="">选择模板...</option>
+          <option value="code-review">代码审查助手</option>
+          <option value="product-requirement">产品需求分析</option>
+          <option value="content-creation">内容创作助手</option>
+          <option value="data-analysis">数据分析助手</option>
+          <option value="learning-tutor">学习辅导助手</option>
+        </select>
+        <button class="btn-secondary" id="btn-import" title="导入 (Ctrl+I)">
+          📂 导入
+        </button>
+        <button class="btn-secondary" id="btn-clear" title="清除所有数据">
+          🗑️ 清除
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <!-- Editor Panel -->
+      <section class="editor-panel" id="editor-container">
+        <!-- 选项卡将由 JavaScript 动态生成 -->
+      </section>
+
+      <!-- Preview Panel -->
+      <section class="preview-panel">
+        <div class="preview-container">
+          <div class="preview-header">
+            <h2 class="preview-title">实时预览</h2>
+            <div class="preview-actions">
+              <button class="btn-primary" id="btn-copy" title="复制 (Ctrl+Shift+C)">
+                📋 复制提示词
+              </button>
+            </div>
+          </div>
+
+          <div class="preview-content" id="preview-content">
+            <!-- 预览内容将动态生成 -->
+          </div>
+
+          <div class="preview-toolbar">
+            <div class="preview-stats">
+              <div class="preview-stat">
+                <span>总字符:</span>
+                <span class="preview-stat-value" id="total-chars">0</span>
+              </div>
+              <div class="preview-stat">
+                <span>总行数:</span>
+                <span class="preview-stat-value" id="total-lines">0</span>
+              </div>
+            </div>
+
+            <div class="preview-actions-right">
+              <button class="btn-secondary" id="btn-export-txt" title="导出 TXT">
+                📄 导出 TXT
+              </button>
+              <button class="btn-secondary" id="btn-export-json" title="导出 JSON (Ctrl+E)">
+                💾 导出 JSON
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <span>自动保存: <span id="last-saved">从未</span></span>
+      </div>
+      <div class="footer-center">
+        <span>Prompt 提示词编辑器 v1.0 | Made with ❤️</span>
+      </div>
+      <div class="footer-right">
+        <button class="btn-icon" id="btn-theme" title="切换主题 (Ctrl+D)">
+          <span class="icon">🌙</span>
+        </button>
+        <button class="btn-icon" id="btn-help" title="帮助">
+          <span class="icon">❓</span>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JavaScript -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

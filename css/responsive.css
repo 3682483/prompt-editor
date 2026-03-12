@@ -1,0 +1,163 @@
+/* ============================================
+   Prompt 提示词编辑器 - Responsive Styles
+   ============================================ */
+
+/* ========== 移动端适配 (Mobile) ========== */
+
+@media (max-width: 767px) {
+  .app-main {
+    grid-template-columns: 1fr;
+    padding: var(--space-6);
+    gap: var(--space-6);
+  }
+
+  .app-header {
+    padding: 0 var(--space-6);
+  }
+
+  .app-footer {
+    padding: 0 var(--space-6);
+  }
+
+  .tab-bar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .tab-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-item {
+    min-width: 100px;
+    flex: 0 0 auto;
+  }
+
+  .preview-panel {
+    order: 2;
+  }
+
+  .editor-panel {
+    order: 1;
+  }
+
+  .preview-toolbar {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .preview-actions-right {
+    width: 100%;
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .preview-actions-right button {
+    flex: 1;
+  }
+
+  .header-right {
+    gap: var(--space-2);
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    min-width: 60px;
+    padding: 0 var(--space-3);
+  }
+
+  .logo {
+    font-size: var(--text-lg);
+  }
+
+  .editor-content {
+    min-height: 400px;
+  }
+
+  .preview-content {
+    min-height: 300px;
+    max-height: 400px;
+  }
+}
+
+/* ========== 平板适配 (Tablet) ========== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-main {
+    grid-template-columns: 1fr 1fr;
+    padding: var(--space-8);
+  }
+
+  .app-header {
+    padding: 0 var(--space-8);
+  }
+
+  .app-footer {
+    padding: 0 var(--space-8);
+  }
+
+  .tab-item {
+    height: 40px;
+    font-size: var(--text-xs);
+  }
+
+  .editor-content {
+    min-height: 450px;
+  }
+
+  .preview-content {
+    min-height: 350px;
+    max-height: 500px;
+  }
+}
+
+/* ========== 大屏优化 ========== */
+
+@media (min-width: 1536px) {
+  .app-main {
+    max-width: 1600px;
+    gap: var(--space-12);
+  }
+
+  .textarea {
+    min-height: 300px;
+  }
+
+  .preview-content {
+    min-height: 500px;
+    max-height: 700px;
+  }
+}
+
+/* ========== 打印样式 ========== */
+
+@media print {
+  .app-header,
+  .app-footer,
+  .tab-bar,
+  .preview-actions,
+  .preview-actions-right,
+  .char-count {
+    display: none;
+  }
+
+  .app-main {
+    display: block;
+  }
+
+  .editor-panel {
+    display: none;
+  }
+
+  .preview-panel {
+    display: block;
+  }
+
+  .preview-container {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+}
