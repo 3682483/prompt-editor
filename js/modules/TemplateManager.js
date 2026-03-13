@@ -3,13 +3,41 @@
  * 负责预设模板和自定义模板的加载、保存、删除
  */
 
-import { presetTemplates } from '../config/templates.js';
+import { presetTemplates, getCategories, getTemplatesByCategory, getCategoryStats } from '../config/templates.js';
 
 export class TemplateManager {
   constructor(storageKey = 'prompt-editor-templates') {
     this.storageKey = storageKey;
     this.presets = presetTemplates;
     this.custom = this.loadCustom();
+  }
+
+  /**
+   * 获取所有预设模板
+   */
+  get templates() {
+    return this.presets;
+  }
+
+  /**
+   * 获取所有分类
+   */
+  get categories() {
+    return getCategories();
+  }
+
+  /**
+   * 获取分类统计
+   */
+  get categoryStats() {
+    return getCategoryStats();
+  }
+
+  /**
+   * 按分类获取模板
+   */
+  getByCategory(category) {
+    return getTemplatesByCategory(category);
   }
 
   /**

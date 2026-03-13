@@ -42,6 +42,9 @@ class PromptEditor {
     // 加载保存的数据
     this.loadSavedData();
 
+    // 初始化模板选择器（动态生成分类）
+    this.initTemplateSelector();
+
     // 绑定事件
     this.bindEvents();
 
@@ -53,6 +56,54 @@ class PromptEditor {
 
     // 更新最后保存时间
     this.updateLastSavedTime();
+  }
+
+  /**
+   * 初始化模板选择器（支持分类）
+   */
+  initTemplateSelector() {
+    const select = document.getElementById('template-select');
+    if (!select) return;
+
+    // 清空现有选项
+    select.innerHTML = '<option value="">📚 选择模板...</option>';
+
+    // 按分类生成 optgroup
+    const categories = {};
+    this.templateManager.templates.forEach(template => {
+      const cat = template.category || '其他';
+      if (!categories[cat]) {
+        categories[cat] = [];
+      }
+      categories[cat].push(template);
+    });
+
+    // 分类图标映射
+    const categoryIcons = {
+      '编程开发': '💻',
+      '产品设计': '🎨',
+      '内容创作': '✍️',
+      '数据分析': '📊',
+      '学习教育': '📖',
+      '生活助手': '🌟',
+      '创意思维': '💡',
+      '其他': '📌'
+    };
+
+    // 生成 optgroup
+    Object.keys(categories).forEach(category => {
+      const group = document.createElement('optgroup');
+      group.label = `${categoryIcons[category] || '📌'} ${category}`;
+
+      categories[category].forEach(template => {
+        const option = document.createElement('option');
+        option.value = template.id;
+        option.textContent = template.name;
+        group.appendChild(option);
+      });
+
+      select.appendChild(group);
+    });
   }
 
   /**
