@@ -176,7 +176,8 @@ body {
 }
 
 .tab-panel.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes fadeIn {

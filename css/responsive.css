@@ -1,28 +1,35 @@
 /* ============================================
    Prompt 提示词编辑器 - Responsive Styles
+   使用 Flexbox 弹性布局
    ============================================ */
 
 /* ========== 移动端适配 (Mobile) ========== */
 
 @media (max-width: 767px) {
-  /* 重置所有容器的 padding */
+  /* 根容器 */
   .app-container {
     min-height: 100vh;
     min-height: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* Header 移动端优化 */
+  /* Header - 弹性换行布局 */
   .app-header {
     height: auto;
     min-height: 56px;
     padding: var(--space-3) var(--space-4);
+    display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
     gap: var(--space-2);
   }
 
   .header-left {
-    flex: 1;
-    min-width: 0;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
   }
 
   .logo {
@@ -36,10 +43,15 @@
   }
 
   .header-right {
-    width: 100%;
+    display: flex;
+    flex: 1 1 100%;
     justify-content: flex-end;
     flex-wrap: wrap;
     gap: var(--space-2);
+  }
+
+  .header-right > * {
+    flex: 0 0 auto;
   }
 
   .header-right select,
@@ -50,26 +62,40 @@
     min-width: auto !important;
   }
 
-  /* Main 内容区 */
+  /* Main - 垂直弹性布局 */
   .app-main {
-    grid-template-columns: 1fr;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: var(--space-4);
     gap: var(--space-4);
   }
 
   /* 编辑器面板 */
-  .editor-content {
-    min-height: 350px;
-    padding: var(--space-4);
+  .editor-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
   }
 
-  /* 选项卡栏优化 */
+  .editor-content {
+    flex: 1;
+    min-height: 350px;
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 选项卡栏 - 弹性滚动 */
   .tab-bar {
+    display: flex;
+    flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    gap: 0;
+    gap: var(--space-1);
     padding: var(--space-1);
   }
 
@@ -78,8 +104,8 @@
   }
 
   .tab-item {
-    min-width: 70px;
     flex: 0 0 auto;
+    min-width: 70px;
     height: 38px;
     padding: 0 var(--space-3);
     font-size: var(--text-xs);
@@ -87,21 +113,36 @@
   }
 
   .tab-item .tab-icon {
-    display: none; /* 移动端隐藏图标，节省空间 */
+    display: none;
   }
 
-  /* Tab Panel */
+  /* Tab Panel - 填充剩余空间 */
   .tab-panel {
-    padding: 0;
+    flex: 1;
+    display: none;
   }
 
-  /* 文本框优化 */
-  .textarea {
+  .tab-panel.active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tab-panel .label {
+    flex: 0 0 auto;
+  }
+
+  .tab-panel .textarea {
+    flex: 1;
     min-height: 150px;
     font-size: var(--text-sm);
     padding: var(--space-3);
   }
 
+  .tab-panel .char-count {
+    flex: 0 0 auto;
+  }
+
+  /* 文本框优化 */
   .label-text {
     font-size: var(--text-sm);
   }
@@ -112,20 +153,23 @@
 
   /* 预览面板 */
   .preview-panel {
-    order: 2;
-  }
-
-  .editor-panel {
-    order: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
   }
 
   .preview-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: var(--space-4);
   }
 
   .preview-header {
+    flex: 0 0 auto;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: var(--space-3);
     margin-bottom: var(--space-3);
     padding-bottom: var(--space-3);
@@ -136,78 +180,81 @@
   }
 
   .preview-actions {
-    width: 100%;
+    display: flex;
   }
 
   .preview-actions .btn-primary {
-    width: 100%;
+    flex: 1;
     justify-content: center;
   }
 
   .preview-content {
-    min-height: 250px;
+    flex: 1;
+    min-height: 200px;
     max-height: 350px;
     font-size: var(--text-xs);
     padding: var(--space-3);
+    overflow-y: auto;
   }
 
-  /* 预览工具栏 */
+  /* 预览工具栏 - 弹性换行 */
   .preview-toolbar {
-    flex-direction: column;
+    flex: 0 0 auto;
+    display: flex;
+    flex-wrap: wrap;
     gap: var(--space-3);
     margin-top: var(--space-3);
     padding-top: var(--space-3);
   }
 
   .preview-stats {
-    width: 100%;
+    flex: 1 1 100%;
+    display: flex;
     justify-content: space-around;
     font-size: var(--text-xs);
   }
 
   .preview-actions-right {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    flex: 1 1 100%;
+    display: flex;
     gap: var(--space-2);
-    margin-left: 0;
   }
 
   .preview-actions-right button {
-    width: 100%;
+    flex: 1;
     justify-content: center;
   }
 
-  /* Footer 移动端优化 */
+  /* Footer - 垂直弹性居中 */
   .app-footer {
     height: auto;
-    min-height: 48px;
-    padding: var(--space-2) var(--space-4);
+    min-height: 60px;
+    padding: var(--space-3) var(--space-4);
+    display: flex;
     flex-direction: column;
-    gap: var(--space-1);
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
   }
 
   .footer-left,
   .footer-center,
   .footer-right {
-    width: 100%;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    text-align: center;
   }
 
   .footer-left {
-    order: 1;
     font-size: var(--text-xs);
   }
 
   .footer-center {
-    order: 2;
     font-size: var(--text-xs);
   }
 
   .footer-right {
-    order: 3;
-    justify-content: center;
+    gap: var(--space-2);
   }
 
   /* 按钮尺寸 */
@@ -223,10 +270,11 @@
     height: 36px;
   }
 
-  /* Toast 优化 */
+  /* Toast - 全宽弹性 */
   .toast {
     left: var(--space-4);
     right: var(--space-4);
+    width: auto;
     transform: translateX(0) translateY(100px);
     font-size: var(--text-xs);
     padding: var(--space-2) var(--space-4);
@@ -248,6 +296,10 @@
     font-size: var(--text-sm);
   }
 
+  .header-right {
+    gap: var(--space-1);
+  }
+
   .tab-item {
     min-width: 60px;
     height: 36px;
@@ -255,18 +307,18 @@
     font-size: 10px;
   }
 
-  .textarea {
-    min-height: 120px;
+  .tab-panel .textarea {
+    min-height: 100px;
     font-size: var(--text-xs);
   }
 
   .preview-content {
-    min-height: 200px;
+    min-height: 150px;
     font-size: 10px;
   }
 
   .preview-actions-right {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   .btn-primary,
@@ -284,9 +336,20 @@
   }
 
   .app-main {
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
     padding: var(--space-6);
     gap: var(--space-6);
+  }
+
+  .editor-panel {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .preview-panel {
+    flex: 1;
+    min-width: 0;
   }
 
   .app-footer {
@@ -303,7 +366,7 @@
     padding: var(--space-5);
   }
 
-  .textarea {
+  .tab-panel .textarea {
     min-height: 180px;
   }
 
@@ -321,7 +384,7 @@
     gap: var(--space-12);
   }
 
-  .textarea {
+  .tab-panel .textarea {
     min-height: 300px;
   }
 
@@ -335,24 +398,57 @@
 
 @media (max-width: 767px) and (orientation: landscape) {
   .app-main {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .preview-panel {
-    order: 1;
+    flex-direction: row;
+    flex: 1;
   }
 
   .editor-panel {
-    order: 2;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .preview-panel {
+    flex: 1;
+    min-height: 0;
   }
 
   .editor-content {
-    min-height: 200px;
+    min-height: 150px;
+  }
+
+  .tab-panel .textarea {
+    min-height: 80px;
   }
 
   .preview-content {
-    min-height: 150px;
-    max-height: 250px;
+    min-height: 100px;
+    max-height: 200px;
+  }
+
+  .preview-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .preview-actions .btn-primary {
+    flex: 0 0 auto;
+  }
+
+  .preview-toolbar {
+    flex-wrap: nowrap;
+  }
+
+  .preview-stats {
+    flex: 0 0 auto;
+  }
+
+  .preview-actions-right {
+    flex: 0 0 auto;
+  }
+
+  .preview-actions-right button {
+    flex: 0 0 auto;
   }
 }
 
